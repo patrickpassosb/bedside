@@ -1,0 +1,19 @@
+{
+  "active": true,
+  "current_phase": "deep-interview",
+  "interview_id": "bedside-hackathon-prep-2026",
+  "type": "brownfield",
+  "initial_idea": "Prepare for Harvard HSIL Hackathon 2026 - build Bedside (AI patient communication platform) as fast as possible during hackathon day. Need strategy for fastest execution with highest quality. Has complete specs, schema, Google Stitch prompt. Cannot code before hackathon, only prepare. Wants to use Claude Code agents (ralph loop or similar). Wants help evaluating Google Stitch prompt quality.",
+  "rounds": "[]",
+  "current_ambiguity": "1.0",
+  "threshold": "0.2",
+  "codebase_context": "Complete spec repo with: SCHEMA_v2.md (10 tables, multi-tenant PostgreSQL), AGENT_1_BACKEND_v2.md (15-step Fastify+Supabase+WhatsApp build), AGENT_2_FRONTEND_v2.md (12-step React+Tailwind+Realtime build), GOOGLE_STITCH_PROMPT_v2.md (6 screens light/dark). No working code. Bun runtime, TypeScript strict.",
+  "challenge_modes_used": "[]",
+  "ontology_snapshots": "[]",
+  "_meta": {
+    "mode": "deep-interview",
+    "sessionId": null,
+    "updatedAt": "2026-04-06T14:00:01.376Z",
+    "updatedBy": "state_write_tool"
+  }
+}

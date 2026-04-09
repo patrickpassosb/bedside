@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Patient Detail - Bedside Platform</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#1e293b",
+                        "on-tertiary-fixed-variant": "#693c00",
+                        "on-error": "#ffffff",
+                        "tertiary": "#8a5100",
+                        "inverse-surface": "#f7f9fb",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-tertiary-fixed": "#2c1600",
+                        "primary-fixed": "#c9e6ff",
+                        "error-container": "#450a0a",
+                        "tertiary-fixed-dim": "#ffb86e",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#94a3b8",
+                        "surface-bright": "#1e293b",
+                        "on-surface": "#f1f5f9",
+                        "secondary-container": "#1e293b",
+                        "surface-container-lowest": "#0f172a",
+                        "primary-fixed-dim": "#89ceff",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#334155",
+                        "inverse-primary": "#0ea5e9",
+                        "outline-variant": "#334155",
+                        "primary-container": "#0ea5e9",
+                        "error": "#f87171",
+                        "surface-container": "#1e293b",
+                        "on-secondary-fixed": "#0b1c30",
+                        "tertiary-fixed": "#ffdcbd",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-tint": "#38bdf8",
+                        "on-primary-container": "#003751",
+                        "on-error-container": "#fca5a5",
+                        "on-secondary-container": "#94a3b8",
+                        "primary": "#38bdf8",
+                        "on-tertiary-container": "#ffdcbd",
+                        "secondary": "#94a3b8",
+                        "surface-container-highest": "#334155",
+                        "surface-container-low": "#1e293b",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-primary-fixed-variant": "#0ea5e9",
+                        "inverse-on-surface": "#0f172a",
+                        "background": "#0f172a",
+                        "tertiary-container": "#de8712",
+                        "outline": "#475569",
+                        "surface": "#0f172a",
+                        "surface-dim": "#020617",
+                        "on-primary-fixed": "#001e2f",
+                        "on-primary": "#0f172a",
+                        "on-background": "#f1f5f9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f1f5f9; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel { backdrop-filter: blur(20px); background: rgba(15, 23, 42, 0.7); }
+        .ambient-glow { box-shadow: 0 0 40px -10px rgba(56, 189, 248, 0.15); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- SideNavBar Anchor -->
+<aside class="w-[240px] h-screen fixed left-0 top-0 border-r-0 bg-slate-50 dark:bg-slate-900/50 backdrop-blur-md flex flex-col h-full p-6 z-50">
+<div class="mb-10 flex items-center gap-3">
+<div class="w-10 h-10 bg-gradient-to-br from-primary to-primary-container rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">pulse_alert</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">Bedside</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-sky-400 font-bold">Active Pulse</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="font-inter body-md leading-relaxed tracking-tight">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-sky-700 dark:text-sky-400 font-semibold bg-sky-50 dark:bg-sky-900/20 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">rss_feed</span>
+<span class="font-inter body-md leading-relaxed tracking-tight">Activity Feed</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl">priority_high</span>
+<span class="font-inter body-md leading-relaxed tracking-tight">Escalations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="font-inter body-md leading-relaxed tracking-tight">Admin</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-800/50">
+<div class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-xl">local_hospital</span>
+<span class="font-inter body-md leading-relaxed tracking-tight text-xs uppercase tracking-wider">Hospital Isaac Newton</span>
+</div>
+</div>
+</aside>
+<!-- TopNavBar Anchor -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] z-40 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl border-b border-slate-200/15 dark:border-slate-800/15 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center h-16 px-8 max-w-[1400px] mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-white transition-colors">arrow_back</span>
+<h2 class="font-inter font-bold text-2xl text-slate-900 dark:text-white">Patient Detail</h2>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-slate-900 dark:text-white font-mono text-sm tracking-widest">14:32:07</span>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined text-sky-400" style="font-variation-settings: 'FILL' 1;">dark_mode</span>
+</button>
+<button class="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all duration-300">
+<img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-sky-500/30" data-alt="Close up portrait of a professional male doctor with glasses in a clinical setting with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT0oaXdAWvNqJ1tBKLcKn-l-8Ji7QR5y-j8BD2OORJYZf_Ghtw8MAHHOMYWsfcMjIArKuZ98elLEjWcLD8k1ZoRUEBoWuJVFe9w6xH562a6EJ-AnJdsp52Q595uc_2qGbxnd4QeT3V4h2xEtX3Pnt7CFm1RTuejoe1JDoZlzIwQIfiqFFXLn_frIKX9sM_l_LJxAwG9r8qBcADVkoPHiyfkhj-bjLBdSMvdn137nMpx9qLMAZSb-CuuvtMfJE7fNo8pSTUd7mlBg"/>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-[240px] pt-16 min-h-screen p-8">
+<div class="max-w-[1400px] mx-auto space-y-8">
+<!-- Patient Header Bento Section -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Profile Card -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest rounded-xl p-6 flex items-start gap-6 ambient-glow">
+<div class="relative">
+<img alt="Patient" class="w-24 h-24 rounded-2xl object-cover ring-4 ring-surface-container-high" data-alt="Professional medical portrait of an elderly woman with silver hair, calm expression, neutral studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2Xj946HDvpoYXZbdeQS732u3l9cj04YmmPdUmjMdMEJozY910WDW7PgfgNQW6MQGTZ0z21kCl21u9SIIzHczuDfAEtfPiYn57WZvQWiX70dCArpFrn_64YLNOvt2GpTQXvq3sfl5Y9iuDpLwUxoAhgELX6jGc_aNuuyJMIgtLgtiH9H7_nwpGVGf_RMfDDObk45Tr-yM4YcPfBKL_x2m9LcikHmHR9P_pmncftLAx59jW_AlmLHeDf2Ue02denOq9931qcD3-tA"/>
+<div class="absolute -bottom-2 -right-2 bg-primary w-8 h-8 rounded-full flex items-center justify-center border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-xs text-on-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 bg-sky-500/10 text-sky-400 text-[10px] font-bold uppercase tracking-widest rounded">Bed 12A</span>
+</div>
+<h3 class="text-2xl font-bold text-on-surface">Elena Rodriguez</h3>
+<p class="text-on-surface-variant text-sm mb-4">74 Years • Female • ID: #PT-9942</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full">Hypertension</span>
+<span class="px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full">Type 2 Diabetes</span>
+</div>
+</div>
+</div>
+<!-- Vital Stats Bento -->
+<div class="col-span-12 lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-low rounded-xl p-5 flex flex-col justify-between border border-outline-variant/10">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary">favorite</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">BPM</span>
+</div>
+<div class="mt-4">
+<span class="text-3xl font-bold text-on-surface">72</span>
+<div class="h-1 w-full bg-surface-variant rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-primary w-3/4"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-5 flex flex-col justify-between border border-outline-variant/10">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary">air</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">SPO2</span>
+</div>
+<div class="mt-4">
+<span class="text-3xl font-bold text-on-surface">98%</span>
+<div class="h-1 w-full bg-surface-variant rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-emerald-500 w-[98%]"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-5 flex flex-col justify-between border border-outline-variant/10">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary">device_thermostat</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">TEMP</span>
+</div>
+<div class="mt-4">
+<span class="text-3xl font-bold text-on-surface">36.8</span>
+<div class="h-1 w-full bg-surface-variant rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+</div>
+</div>
+<div class="bg-error-container rounded-xl p-5 flex flex-col justify-between border border-error/20">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-error">blood_pressure</span>
+<span class="text-[10px] font-bold text-on-error-container uppercase tracking-tighter">BP</span>
+</div>
+<div class="mt-4">
+<span class="text-3xl font-bold text-on-error-container">145/92</span>
+<p class="text-[10px] text-on-error-container/70 mt-1 font-bold">ELEVATED</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Chat & Engagement (Left Column) -->
+<div class="col-span-12 lg:col-span-7 space-y-6">
+<div class="bg-surface-container-lowest rounded-2xl flex flex-col h-[600px] border border-outline-variant/5">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/50 rounded-t-2xl">
+<div>
+<h4 class="font-bold text-lg text-on-surface">Patient Care Chat</h4>
+<p class="text-xs text-on-surface-variant">Real-time interaction with bedside tablet</p>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">call</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Chat Canvas -->
+<div class="flex-1 p-6 overflow-y-auto space-y-6">
+<!-- Nurse Msg -->
+<div class="flex gap-3 max-w-[80%]">
+<img alt="Nurse" class="w-8 h-8 rounded-full object-cover shrink-0" data-alt="Clinical portrait of a female nurse wearing scrubs, friendly expression, soft bokeh clinic background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpQy5xSbKOAHWAvJqIo4V8vvQsNmIRNkPvOP3b94PIZA0mu3YBtDlTEq5Tj16_Ftdpr_mXa_g1PUwfo7mdOVmA_Qo04KeiJrjxa5t1BC_P9fCjo4sSht2v_FvFvezrudUDo5G2itNbxIv1EXwuE7nB_NFjEonXG0HVA57vsGiupnFd-UpioRu6aeOaVhb9CgeUa68EZXmnRXpKUqPOXsFC-RArH_Ex6jsnS7vKI9hogBP9QjsfiXaQr__JgE10GUgKL56FaR_mSw"/>
+<div class="bg-surface-container-low p-4 rounded-2xl rounded-tl-none">
+<p class="text-sm text-on-surface leading-relaxed">Good morning Elena, I see you've finished your breakfast. How are you feeling after the morning dose of Lisinopril?</p>
+<span class="text-[10px] text-on-surface-variant mt-2 block font-medium">09:15 AM • Nurse Sarah</span>
+</div>
+</div>
+<!-- Patient Urgent Msg -->
+<div class="flex flex-row-reverse gap-3 max-w-[80%] ml-auto">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0 border border-primary/30">
+<span class="material-symbols-outlined text-primary text-sm">person</span>
+</div>
+<div class="bg-error-container/40 border border-error/20 p-4 rounded-2xl rounded-tr-none ambient-glow">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-error text-sm" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="text-[10px] font-bold text-on-error-container uppercase tracking-widest">Pain Alert</span>
+</div>
+<p class="text-sm text-on-error-container leading-relaxed">I have a sharp pain in my lower back when I try to sit up. It started about 15 minutes ago. It's about a 7/10.</p>
+<span class="text-[10px] text-on-error-container/60 mt-2 block font-medium">10:42 AM • Elena</span>
+</div>
+</div>
+<!-- Nurse Msg -->
+<div class="flex gap-3 max-w-[80%]">
+<img alt="Nurse" class="w-8 h-8 rounded-full object-cover shrink-0" data-alt="Clinical portrait of a female nurse wearing scrubs, friendly expression, soft bokeh clinic background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyRTwpVZ2alSx7I7w6-Kfyxkla-N_hLv6Dm99SdWrt9Ol-Yvfe8LsQojMjkU8mTm21G-c4U4mer7FfOOygNKPjdISwIWeju7C4phDiSI4PsnLj7aGlVeD8zamV8ei0rlQn9iLFZlExyG0_9pP3pzOg19Ioj_VuCu1pUhu9qoayLoNAYyE46dI4_lojOLAHrrlXiw1QfkgA9S-REPWId6uBEEjUwsv58KTyqyQtmy2ongfySoaGAR0zQ-pNOGpVjOerFp0rPc1csQ"/>
+<div class="bg-surface-container-low p-4 rounded-2xl rounded-tl-none">
+<p class="text-sm text-on-surface leading-relaxed">I'm coming in right now to check on you, Elena. Please stay still and try to breathe slowly. I'll be there in 30 seconds.</p>
+<span class="text-[10px] text-on-surface-variant mt-2 block font-medium">10:43 AM • Nurse Sarah</span>
+</div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-6 bg-surface-container-low/30 rounded-b-2xl">
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container-high border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-primary/50 transition-all text-on-surface placeholder:text-on-surface-variant" placeholder="Type a clinical note or message..." type="text"/>
+<button class="absolute right-2 bg-primary p-2 rounded-lg text-on-primary flex items-center justify-center hover:scale-105 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Diagnostics & Timeline (Right Column) -->
+<div class="col-span-12 lg:col-span-5 space-y-6">
+<!-- Care Team Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/5">
+<h4 class="font-bold text-sm text-on-surface-variant uppercase tracking-widest mb-4">Assigned Care Team</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-3">
+<img alt="Dr. Chen" class="w-10 h-10 rounded-full object-cover" data-alt="Medical professional male doctor in white coat, confident expression, bright hospital hallway background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXWHJToDiNdRlRHaqnsltI1i9Ge-B-tFNwdiX31_XcK0GMyZlY9MnBhQFPEVNdYROjSQwMZlCxf842myngl9AjUgH3ASrEyKXoCm6nYMlihkfC8ZkeUIX50JDnpcjpdJsl69AxfJqalGMeiCDUWV472wX3gVYnvu4ten_osrRAqLOxR5b0LWXoqqtQA2LCTdnHm3m5bCNC3J9MoPNb7Sy_ZY3xDfnL8ma-QIW4pf_uQLNKM5sAZowGvJ9Zone16VT3FhsYRKDsPA"/>
+<div>
+<p class="text-sm font-bold text-on-surface">Dr. Marcus Chen</p>
+<p class="text-[11px] text-on-surface-variant">Attending Cardiologist</p>
+</div>
+</div>
+<span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-3">
+<img alt="Nurse Sarah" class="w-10 h-10 rounded-full object-cover" data-alt="Female registered nurse in blue scrubs, professional headshot with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKkjDGoVh-J18l8aO13ayC6tf7KC3X406-t_IP8gUZA2mwV5-9dAvxKwZtzVQyustxP6kK-HHSipqod8-_YUwfh4DhyMzzbpTPsPPt26lGUfTrg_z0okM6WrHbHq2gmmOPzjcT462w-AWLZoGzNfyDfYdTTJtgQpxfUCVmQfsyGNhq0S_m7rd4Y5JW_6n8vBz384mvPkrv6VfAmBy5aWUzW3aes8y5-M29X2TzyDYKQst_yYE1pH79fZNOBwkBUgAr8I83uK_R_Q"/>
+<div>
+<p class="text-sm font-bold text-on-surface">Sarah Jenkins, RN</p>
+<p class="text-[11px] text-on-surface-variant">Primary Care Nurse</p>
+</div>
+</div>
+<span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+</div>
+</div>
+</div>
+<!-- Clinical Timeline -->
+<div class="bg-surface-container-low/50 rounded-2xl p-6 border border-outline-variant/5">
+<div class="flex items-center justify-between mb-6">
+<h4 class="font-bold text-sm text-on-surface-variant uppercase tracking-widest">Care Timeline</h4>
+<span class="text-[10px] font-bold text-primary cursor-pointer hover:underline">VIEW LOGS</span>
+</div>
+<div class="space-y-6 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant/20">
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 bg-primary/20 rounded-full border-2 border-primary flex items-center justify-center z-10">
+<span class="w-2 h-2 bg-primary rounded-full"></span>
+</div>
+<p class="text-[10px] font-bold text-primary mb-1">CURRENT STATUS</p>
+<p class="text-sm font-semibold text-on-surface leading-tight">Patient reported acute lower back pain</p>
+<p class="text-xs text-on-surface-variant mt-1">NRS Pain Scale: 7/10. Pulse elevated to 88 BPM.</p>
+<p class="text-[10px] text-on-surface-variant/60 mt-2">2 minutes ago</p>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 bg-surface-container-highest rounded-full border-2 border-outline-variant/30 flex items-center justify-center z-10">
+<span class="w-2 h-2 bg-outline-variant rounded-full"></span>
+</div>
+<p class="text-sm font-medium text-on-surface-variant leading-tight">Morning Medications Administered</p>
+<p class="text-xs text-on-surface-variant/70 mt-1">Lisinopril 10mg, Metformin 500mg.</p>
+<p class="text-[10px] text-on-surface-variant/60 mt-2">1 hour ago</p>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-6 h-6 bg-surface-container-highest rounded-full border-2 border-outline-variant/30 flex items-center justify-center z-10">
+<span class="w-2 h-2 bg-outline-variant rounded-full"></span>
+</div>
+<p class="text-sm font-medium text-on-surface-variant leading-tight">Vitals Check - Stable</p>
+<p class="text-xs text-on-surface-variant/70 mt-1">BP 128/84, HR 74, SpO2 98%.</p>
+<p class="text-[10px] text-on-surface-variant/60 mt-2">3 hours ago</p>
+</div>
+</div>
+</div>
+<!-- Action Panel -->
+<div class="grid grid-cols-2 gap-4">
+<button class="bg-primary hover:bg-primary-container text-on-primary font-bold py-4 rounded-xl transition-all flex flex-col items-center justify-center gap-2 shadow-lg shadow-primary/20 group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">medical_information</span>
+<span class="text-xs uppercase tracking-widest">Update Chart</span>
+</button>
+<button class="bg-surface-container-highest hover:bg-outline-variant/30 text-on-surface font-bold py-4 rounded-xl transition-all flex flex-col items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">medication</span>
+<span class="text-xs uppercase tracking-widest">Rx Orders</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB (Hidden on Detail Screens per rule, but following user prompt for 'Premium Aesthetics' if needed) -->
+<!-- Suppression applied as per Contextual FAB Suppression rule: Suppress on Details screens. -->
+</body></html>

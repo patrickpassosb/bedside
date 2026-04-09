@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e6e8ea",
+                    "on-tertiary-fixed-variant": "#693c00",
+                    "on-error": "#ffffff",
+                    "tertiary": "#8a5100",
+                    "inverse-surface": "#2d3133",
+                    "secondary-fixed": "#d3e4fe",
+                    "on-tertiary-fixed": "#2c1600",
+                    "primary-fixed": "#c9e6ff",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#ffb86e",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#3e4850",
+                    "surface-bright": "#f7f9fb",
+                    "on-surface": "#191c1e",
+                    "secondary-container": "#d0e1fb",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#89ceff",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e0e3e5",
+                    "inverse-primary": "#89ceff",
+                    "outline-variant": "#bec8d2",
+                    "primary-container": "#0ea5e9",
+                    "error": "#ba1a1a",
+                    "surface-container": "#eceef0",
+                    "on-secondary-fixed": "#0b1c30",
+                    "tertiary-fixed": "#ffdcbd",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "surface-tint": "#006591",
+                    "on-primary-container": "#003751",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#54647a",
+                    "primary": "#006591",
+                    "on-tertiary-container": "#4d2b00",
+                    "secondary": "#505f76",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "inverse-on-surface": "#eff1f3",
+                    "background": "#f7f9fb",
+                    "tertiary-container": "#de8712",
+                    "outline": "#6e7881",
+                    "surface": "#f7f9fb",
+                    "surface-dim": "#d8dadc",
+                    "on-primary-fixed": "#001e2f",
+                    "on-primary": "#ffffff",
+                    "on-background": "#191c1e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0F172A; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="text-slate-200 antialiased overflow-hidden h-screen flex">
+<!-- SideNavBar Component -->
+<aside class="w-[240px] h-screen fixed left-0 top-0 border-r-0 bg-slate-50 dark:bg-slate-900/50 backdrop-blur-md flex flex-col h-full p-6 z-50">
+<div class="mb-10">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-sky-700 to-sky-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg">medical_services</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white leading-none">Bedside</h1>
+<p class="text-[10px] uppercase tracking-widest text-sky-700 dark:text-sky-400 font-bold mt-1">Active Pulse</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Nav Item: Overview (Inactive) -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors font-inter body-md leading-relaxed tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Overview</span>
+</a>
+<!-- Nav Item: Activity Feed (Inactive) -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors font-inter body-md leading-relaxed tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="rss_feed">rss_feed</span>
+<span>Activity Feed</span>
+</a>
+<!-- Nav Item: Escalations (Active) -->
+<a class="flex items-center gap-3 px-4 py-3 text-sky-700 dark:text-sky-400 font-semibold bg-sky-50 dark:bg-sky-900/20 rounded-lg font-inter body-md leading-relaxed tracking-tight scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="priority_high">priority_high</span>
+<span>Escalations</span>
+<span class="ml-auto bg-error text-white text-[10px] px-1.5 py-0.5 rounded-full">12</span>
+</a>
+<!-- Nav Item: Admin (Inactive) -->
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors font-inter body-md leading-relaxed tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Admin</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-800/20">
+<div class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 font-inter body-md leading-relaxed tracking-tight">
+<span class="material-symbols-outlined" data-icon="hospital">local_hospital</span>
+<span>Hospital Isaac Newton</span>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 ml-[240px] flex flex-col h-screen relative bg-slate-950 overflow-y-auto">
+<!-- TopNavBar Component -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] z-40 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl border-b border-slate-200/15 dark:border-slate-800/15 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center h-16 px-8 max-w-[1400px] mx-auto">
+<div class="flex items-center gap-4">
+<h2 class="font-inter font-bold text-2xl text-slate-900 dark:text-white">Escalations</h2>
+<span class="text-slate-500 dark:text-slate-400 font-mono text-sm">14:32:07</span>
+</div>
+<div class="flex items-center gap-6">
+<button class="w-10 h-10 flex items-center justify-center hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all duration-300 text-sky-700 dark:text-sky-400">
+<span class="material-symbols-outlined" data-icon="dark_mode" style="font-variation-settings: 'FILL' 1;">dark_mode</span>
+</button>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold text-slate-900 dark:text-white leading-none">Dr. Sarah Chen</p>
+<p class="text-[10px] text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-tighter">Supervising Physician</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 dark:text-slate-500 text-3xl" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<section class="mt-16 p-8 space-y-12">
+<!-- High Priority Grid -->
+<div>
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-sm font-bold tracking-widest text-error uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="warning">warning</span>
+                        Active Escalations (4)
+                    </h3>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+<!-- Critical Card 1 -->
+<div class="group relative bg-red-500/5 border border-red-500/40 rounded-xl p-6 transition-all hover:bg-red-500/10 hover:border-red-500/60">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-4">
+<img class="w-16 h-16 rounded-lg object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Close-up portrait of an elderly patient in a hospital bed with a calm but focused expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvsl8uIRy5FRHycKYk0Fbji5HnJXbKzjp__hN3G08_shXnjq7HS6__wIgoO8BV7sDQfL074XSj_kid4ckziUcmX6J5UfVmyTbhJT8QGWSnHeUJo42xnqS-R21ePIJ1LrQYMghk1UcFvuA8949Ib02QU42Tt0vkjk20FscgfJOfd6j8C7B96y4gd-gcaF_iVxL_cgw8y0D2ZSFDOiqTZ1CEatSXXtjC7UyeAZsTDC76X9YXNDySYKIQqy8NGg0XvuQbglNOrsFKdw"/>
+<div>
+<h4 class="text-xl font-bold text-white">James Harrison</h4>
+<p class="text-slate-400 text-sm">Room 402-B • Cardiology</p>
+</div>
+</div>
+<span class="bg-red-500/20 text-red-400 text-[10px] font-black px-2 py-1 rounded-md border border-red-500/30 uppercase tracking-tighter">Critical</span>
+</div>
+<div class="space-y-4 mb-6">
+<div class="flex items-center justify-between text-sm">
+<span class="text-slate-500">Trigger:</span>
+<span class="text-red-400 font-semibold italic">Abnormal Vitals Trend</span>
+</div>
+<div class="bg-slate-900/60 rounded-lg p-4 grid grid-cols-3 gap-4 border border-slate-800">
+<div>
+<p class="text-[10px] text-slate-500 uppercase font-bold mb-1">HR</p>
+<p class="text-lg font-mono text-red-500">142<span class="text-[10px] ml-1">BPM</span></p>
+</div>
+<div>
+<p class="text-[10px] text-slate-500 uppercase font-bold mb-1">SpO2</p>
+<p class="text-lg font-mono text-white">88<span class="text-[10px] ml-1">%</span></p>
+</div>
+<div>
+<p class="text-[10px] text-slate-500 uppercase font-bold mb-1">BP</p>
+<p class="text-lg font-mono text-white">164/98</p>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 py-2.5 bg-gradient-to-br from-error to-red-600 text-white rounded-lg text-sm font-bold tracking-tight hover:brightness-110 transition-all">Acknowledge</button>
+<button class="px-4 py-2.5 bg-slate-800 text-slate-200 rounded-lg hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- Critical Card 2 -->
+<div class="group relative bg-red-500/5 border border-red-500/40 rounded-xl p-6 transition-all hover:bg-red-500/10 hover:border-red-500/60">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-4">
+<div class="w-16 h-16 rounded-lg bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600 text-3xl" data-icon="person">person</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-white">Elena Rodriguez</h4>
+<p class="text-slate-400 text-sm">Room 112 • ICU Annex</p>
+</div>
+</div>
+<span class="bg-red-500/20 text-red-400 text-[10px] font-black px-2 py-1 rounded-md border border-red-500/30 uppercase tracking-tighter">Critical</span>
+</div>
+<div class="space-y-4 mb-6">
+<div class="flex items-center justify-between text-sm">
+<span class="text-slate-500">Trigger:</span>
+<span class="text-red-400 font-semibold italic">Unresponsive Nurse Call</span>
+</div>
+<div class="bg-slate-900/60 rounded-lg p-4 border border-slate-800">
+<p class="text-sm text-slate-300 italic">"Patient exhibiting signs of acute distress. Secondary alarm triggered via monitoring patch. No response from station 4 in 120s."</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 py-2.5 bg-gradient-to-br from-error to-red-600 text-white rounded-lg text-sm font-bold tracking-tight hover:brightness-110 transition-all">Emergency Override</button>
+<button class="px-4 py-2.5 bg-slate-800 text-slate-200 rounded-lg hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="videocam">videocam</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Resolved Section -->
+<div class="opacity-80">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-sm font-bold tracking-widest text-slate-500 uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="check_circle">check_circle</span>
+                        Recently Resolved
+                    </h3>
+<button class="text-xs text-sky-400 hover:underline">View History</button>
+</div>
+<div class="space-y-3">
+<!-- Resolved Item 1 -->
+<div class="flex items-center justify-between bg-slate-900/40 border border-slate-800 p-4 rounded-xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500" data-icon="done_all">done_all</span>
+</div>
+<div>
+<p class="text-slate-200 font-semibold">David G. Miller</p>
+<p class="text-slate-500 text-xs">Escalated by Nurse J. Wade • Resolved 12m ago</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-[10px] text-slate-500 border border-slate-800 px-2 py-0.5 rounded-full uppercase">Medication Conflict</span>
+</div>
+</div>
+<!-- Resolved Item 2 -->
+<div class="flex items-center justify-between bg-slate-900/40 border border-slate-800 p-4 rounded-xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500" data-icon="done_all">done_all</span>
+</div>
+<div>
+<p class="text-slate-200 font-semibold">Sophia Laurent</p>
+<p class="text-slate-500 text-xs">Escalated by System AI • Resolved 45m ago</p>
+</div>
+</div>
+<div class="text-right">
+<span class="text-[10px] text-slate-500 border border-slate-800 px-2 py-0.5 rounded-full uppercase">Fall Risk Alert</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Floating Toast Notification -->
+<div class="fixed bottom-8 right-8 z-[100] transform translate-y-0">
+<div class="glass-panel border border-red-500/50 rounded-2xl p-4 shadow-2xl flex items-center gap-4 max-w-sm animate-pulse-subtle">
+<div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center animate-pulse">
+<span class="material-symbols-outlined text-white" data-icon="notifications_active" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-black text-red-500 uppercase tracking-widest leading-none mb-1">New Escalation</p>
+<p class="text-sm font-semibold text-white">Fábio Lima</p>
+<p class="text-xs text-slate-400">Medical Ward A • Heart Rate Spike</p>
+</div>
+<button class="text-slate-500 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="close">close</span>
+</button>
+</div>
+</div>
+</main>
+<style>
+        @keyframes pulse-subtle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .animate-pulse-subtle {
+            animation: pulse-subtle 4s ease-in-out infinite;
+        }
+    </style>
+</body></html>

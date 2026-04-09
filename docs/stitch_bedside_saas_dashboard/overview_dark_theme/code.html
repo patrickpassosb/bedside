@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e6e8ea",
+                    "on-tertiary-fixed-variant": "#693c00",
+                    "on-error": "#ffffff",
+                    "tertiary": "#8a5100",
+                    "inverse-surface": "#2d3133",
+                    "secondary-fixed": "#d3e4fe",
+                    "on-tertiary-fixed": "#2c1600",
+                    "primary-fixed": "#c9e6ff",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#ffb86e",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#3e4850",
+                    "surface-bright": "#f7f9fb",
+                    "on-surface": "#191c1e",
+                    "secondary-container": "#d0e1fb",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#89ceff",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e0e3e5",
+                    "inverse-primary": "#89ceff",
+                    "outline-variant": "#bec8d2",
+                    "primary-container": "#0ea5e9",
+                    "error": "#ba1a1a",
+                    "surface-container": "#eceef0",
+                    "on-secondary-fixed": "#0b1c30",
+                    "tertiary-fixed": "#ffdcbd",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "surface-tint": "#006591",
+                    "on-primary-container": "#003751",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#54647a",
+                    "primary": "#006591",
+                    "on-tertiary-container": "#4d2b00",
+                    "secondary": "#505f76",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "on-primary-fixed-variant": "#004c6e",
+                    "inverse-on-surface": "#eff1f3",
+                    "background": "#0F172A",
+                    "tertiary-container": "#de8712",
+                    "outline": "#6e7881",
+                    "surface": "#0F172A",
+                    "surface-dim": "#d8dadc",
+                    "on-primary-fixed": "#001e2f",
+                    "on-primary": "#ffffff",
+                    "on-background": "#f8fafc"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter", "sans-serif"],
+                    "body": ["Inter", "sans-serif"],
+                    "label": ["Inter", "sans-serif"],
+                    "mono": ["JetBrains Mono", "monospace"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0F172A;
+            color: #f8fafc;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pulse-blue {
+            box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.4);
+            animation: pulse-blue 2s infinite;
+        }
+        @keyframes pulse-blue {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(56, 189, 248, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+        }
+        .red-glow {
+            box-shadow: 0 0 15px rgba(186, 26, 26, 0.3);
+            border: 1px solid rgba(186, 26, 26, 0.5);
+        }
+        .glass-dark {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="font-body text-on-background selection:bg-primary-container selection:text-white">
+<!-- SideNavBar Shell -->
+<aside class="w-[240px] h-screen fixed left-0 top-0 border-r-0 bg-slate-900/50 backdrop-blur-md z-50 flex flex-col h-full p-6">
+<div class="flex items-center gap-3 mb-12">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">pulse_alert</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-white leading-none">Bedside</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 mt-1">Active Pulse</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-sky-400 font-semibold bg-sky-900/20 rounded-lg transition-transform scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="rss_feed">rss_feed</span>
+<span class="text-sm">Activity Feed</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="priority_high">priority_high</span>
+<span class="text-sm">Escalations</span>
+<span class="ml-auto bg-error text-white text-[10px] px-1.5 py-0.5 rounded-full">2</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm">Admin</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-800/50">
+<div class="flex items-center gap-3 px-3 py-2 text-slate-400">
+<span class="material-symbols-outlined text-xl" data-icon="hospital">local_hospital</span>
+<span class="text-xs truncate">Hospital Isaac Newton</span>
+</div>
+</div>
+</aside>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] z-40 bg-slate-950/70 backdrop-blur-xl border-b border-slate-800/15 shadow-sm">
+<div class="flex justify-between items-center h-16 px-8 max-w-[1400px] mx-auto">
+<div class="flex items-center gap-4">
+<h2 class="font-inter font-bold text-lg text-slate-200">Overview</h2>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2">
+<span class="text-white font-mono text-sm tracking-widest bg-slate-900/50 px-4 py-1 rounded-full border border-slate-800">14:32:07</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-sky-400 rounded-full hover:bg-slate-800 transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="light_mode">dark_mode</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-800 mx-2"></div>
+<button class="flex items-center gap-2 p-1 pr-3 rounded-full hover:bg-slate-800 transition-all">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="professional portrait of a male doctor in clinical attire with soft studio lighting and blurred background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDLpJKAsfHXDHVYsY64fCr7m2BmcJ1txBfc1faJ2S1h8-Ph-w10NcF7kkIi0z8K8IU4J7aaHUZlygbLyHSlcK50QfUHNiDOfCsW4GBSgGd9FCX0hd6Ul8YK_qcxypJk-7rcm1j-Uw_J-5g-RG2njw1rraqdJ9FZF0y_SrNn4cK-8PpzJLhGGTDO2AXncPhBW6BmE53HBf2izMGzqHu50ZgIowlmyg-e960QWP5K7LmtlJfNs0KD7oAbUcRd4hqptU_g_r4R3_k9Q"/>
+<span class="material-symbols-outlined text-slate-400" data-icon="account_circle">expand_more</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] pt-24 px-8 pb-12 max-w-[1400px] mx-auto">
+<!-- Metric Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
+<div class="glass-dark p-5 rounded-xl border border-slate-800/50">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-sky-500/10 rounded-lg text-sky-400">
+<span class="material-symbols-outlined">person</span>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Total Patients</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-white tracking-tight">142</span>
+<span class="text-xs text-emerald-400 font-medium">+4%</span>
+</div>
+</div>
+<div class="bg-red-950/20 p-5 rounded-xl border border-red-500/30 ring-1 ring-red-500/20">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-red-500/10 rounded-lg text-red-400">
+<span class="material-symbols-outlined">priority_high</span>
+</div>
+<span class="text-[10px] font-bold text-red-400/70 uppercase tracking-tighter">Critical Escalations</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-red-400 tracking-tight">02</span>
+<span class="text-xs text-red-400/60 font-medium">Immediate Action</span>
+</div>
+</div>
+<div class="glass-dark p-5 rounded-xl border border-slate-800/50">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-amber-500/10 rounded-lg text-amber-400">
+<span class="material-symbols-outlined">history</span>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Avg Response</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-white tracking-tight">4.2m</span>
+<span class="text-xs text-emerald-400 font-medium">-12s</span>
+</div>
+</div>
+<div class="glass-dark p-5 rounded-xl border border-slate-800/50">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-purple-500/10 rounded-lg text-purple-400">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Discharge Ready</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-white tracking-tight">09</span>
+<span class="text-xs text-slate-500 font-medium">Pending Review</span>
+</div>
+</div>
+</section>
+<!-- Patient Grid Section -->
+<header class="flex justify-between items-center mb-6">
+<h3 class="text-sm font-semibold text-slate-400 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-sky-500"></span>
+                Real-time Monitor
+            </h3>
+<div class="flex gap-2">
+<button class="text-xs text-slate-400 hover:text-white px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/30">Filter by Ward</button>
+<button class="text-xs text-slate-400 hover:text-white px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/30">Sort: Risk</button>
+</div>
+</header>
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Escalation Patient -->
+<div class="glass-dark rounded-2xl overflow-hidden red-glow transition-all">
+<div class="p-6">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-3">
+<div class="relative">
+<img class="w-12 h-12 rounded-xl object-cover grayscale brightness-75" data-alt="middle aged man with glasses in a clinical setting looking serious with sharp lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhe3yjyk8D-Ffj3UpFs8j0nV8i_GQ1hrFG3-A_znJOlElxNHZVuDXmLyVy6ZHAcugguFhRudtxi1a49hSPddvX8bPq5ExSOaI8f_UEMdxLphSFtRh-BruLz3x1MqSlRyV-hiZ1e5-S4EFhbjiGro9am_SS8S6oiPOnJqsecND-OC4MFo0BhsN5LJU5ckfI1xQi20Ly3vzuaOzBKJSEXZszsISIcVlJAjDkTykl_vp-1bOTGZM2uKNJKd-Nyg675_zqeFVFE4W8qA"/>
+<div class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-slate-900 animate-ping"></div>
+</div>
+<div>
+<h4 class="font-bold text-white leading-tight">Roberto Alves</h4>
+<p class="text-xs text-slate-500">Ward B • Room 402</p>
+</div>
+</div>
+<span class="px-2 py-1 bg-red-500 text-white text-[10px] font-black rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">notifications_active</span> 🚨 Escalation
+                        </span>
+</div>
+<div class="space-y-4">
+<div class="flex items-end justify-between">
+<div>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mb-1">Heart Rate</p>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-mono text-red-400">114</span>
+<span class="text-xs text-slate-500">BPM</span>
+</div>
+</div>
+<div class="w-24 h-8">
+<div class="flex items-end gap-0.5 h-full">
+<div class="w-1 bg-red-500/20 h-1/2"></div>
+<div class="w-1 bg-red-500/40 h-2/3"></div>
+<div class="w-1 bg-red-500/60 h-3/4"></div>
+<div class="w-1 bg-red-500 h-full"></div>
+<div class="w-1 bg-red-500/80 h-4/5"></div>
+</div>
+</div>
+</div>
+<div class="h-1 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-red-500 w-[85%]"></div>
+</div>
+</div>
+</div>
+<div class="bg-red-500/10 px-6 py-3 flex justify-between items-center">
+<span class="text-[10px] text-red-400 font-bold">CRITICAL HYPERTENSION</span>
+<button class="text-[10px] bg-red-500 text-white px-2 py-1 rounded font-bold">ACKNOWLEDGE</button>
+</div>
+</div>
+<!-- Active Patient -->
+<div class="glass-dark rounded-2xl overflow-hidden border border-slate-800 transition-all hover:border-sky-500/50">
+<div class="p-6">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-3">
+<div class="relative">
+<img class="w-12 h-12 rounded-xl object-cover" data-alt="older woman patient portrait with natural soft lighting and neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3jemGBgapk_Aqst2D6GAehISdKHHJUspxAQ7XzksF1XOOkEQeWbCVkZqMd6z49hLvr7Tw24txxgUqK-4h1HsY-KqVj8CZJqdFVHK6RBvy4uJE3GfFwUY_u2vZF20L-BHkoRRLH7bsvv5AfiHil4k8__KIIdkjKPX3RpbNtuvGbhItLKN9atw7bLr_OgIegfpyfZIgSrP_A83mL4y26GMxtdzjqbR4moie-eFyWMtWa4SCNPNcu2LeR7ytvuvx7NgBrZPyFul_3w"/>
+<div class="absolute -top-1 -right-1 w-3 h-3 bg-sky-500 rounded-full border-2 border-slate-900 pulse-blue"></div>
+</div>
+<div>
+<h4 class="font-bold text-white leading-tight">Maria Santos</h4>
+<p class="text-xs text-slate-500">Ward A • Room 108</p>
+</div>
+</div>
+<span class="px-2 py-1 bg-sky-500/10 text-sky-400 text-[10px] font-bold rounded">
+                            Just now
+                        </span>
+</div>
+<div class="space-y-4">
+<div class="flex items-end justify-between">
+<div>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mb-1">SPO2</p>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-mono text-white">98</span>
+<span class="text-xs text-slate-500">%</span>
+</div>
+</div>
+<div class="w-24 h-8 flex items-center justify-center">
+<svg class="w-full h-full text-sky-500" fill="none" viewbox="0 0 100 40">
+<path d="M0 20 L20 20 L25 5 L35 35 L40 20 L100 20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="h-1 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-sky-500 w-[98%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stable Patient 1 -->
+<div class="glass-dark rounded-2xl overflow-hidden border border-slate-800/50 transition-all hover:border-slate-700">
+<div class="p-6">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-3">
+<img class="w-12 h-12 rounded-xl object-cover opacity-80" data-alt="man portrait in medical setting with shallow depth of field and professional lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOAfHazxFlr0hSAVjvhGu0bSO_G3XV2WSKqX7hMwu3mY8SzLLL3r8iQhObnf78dFrKZbGHprJacDBK1BqcZgZX-kDmPBgkWYnnXibNa7Ryt-RsZi-tm4Wbv9K-OVZMYXzRj7SPZ_AR_M_de1_Bx11WoUJl41uPvENqfd7gz-z6ZM1vpt3NNQVc4q-ohvbbiIPJVx38zMjNg0F6UWQQ2-IZNKP-lwuX2qm5uUdsI2OHKIeX3SVFypGq2QWHWjooTAtvvZnbYIoHwg"/>
+<div>
+<h4 class="font-bold text-slate-300 leading-tight">David Chen</h4>
+<p class="text-xs text-slate-500">Ward A • Room 112</p>
+</div>
+</div>
+<span class="px-2 py-1 bg-slate-800 text-slate-400 text-[10px] font-bold rounded">
+                            Stable
+                        </span>
+</div>
+<div class="space-y-4 opacity-70">
+<div class="flex items-end justify-between">
+<div>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mb-1">Temp</p>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-mono text-white">36.8</span>
+<span class="text-xs text-slate-500">°C</span>
+</div>
+</div>
+</div>
+<div class="h-1 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[70%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stable Patient 2 -->
+<div class="glass-dark rounded-2xl overflow-hidden border border-slate-800/50 transition-all hover:border-slate-700">
+<div class="p-6">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-3">
+<img class="w-12 h-12 rounded-xl object-cover opacity-80" data-alt="young woman looking calm in hospital setting with soft ambient room lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATe9YHqBc6XdLOOjN96ykB_igsTqi3zHcik-9ZYScawIinAOwDAOG5cnHdsrmpNxY8yEMVRqqN7nu8l0HEDzOExVUqN6gW0qYgYF44Q_uYrKFwtU9pzI8u18iAQhiVW4ARil1lghpOsujKN6kwQ346asWw5MIIAvSVs3SlePjlT4X66NsMOOpMUgoXsuEP9V6Qq16T1uDSvM0MHvMXCKEM0toYKReqb62kEN50T4XcqeUP4aTWGshxkN8eZWTGqUHGqW13ikbBWw"/>
+<div>
+<h4 class="font-bold text-slate-300 leading-tight">Elena Richter</h4>
+<p class="text-xs text-slate-500">Ward C • Room 305</p>
+</div>
+</div>
+<span class="px-2 py-1 bg-slate-800 text-slate-400 text-[10px] font-bold rounded">
+                            Stable
+                        </span>
+</div>
+<div class="space-y-4 opacity-70">
+<div class="flex items-end justify-between">
+<div>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mb-1">B.P.</p>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-mono text-white">122/80</span>
+<span class="text-xs text-slate-500">mmHg</span>
+</div>
+</div>
+</div>
+<div class="h-1 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[60%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stable Patient 3 -->
+<div class="glass-dark rounded-2xl overflow-hidden border border-slate-800/50 transition-all hover:border-slate-700">
+<div class="p-6">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-3">
+<img class="w-12 h-12 rounded-xl object-cover opacity-80" data-alt="female patient with hopeful expression in bright surgical ward with blue background tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsqWaJjKcGOhCeo97Lut1oQPtpLxHbdTL2nNmeHWSMJgyyrVjEHDq2QOJrD7yvkpipSSdG68k1XZ-4zMJGWkarSmbURGLlg6-UT4kuizCYZfgZ5CADkYT3toJcyjRrgz5Whuyxi5iy08U80BWJYjjaIUm8xArM7VWP3OL0agtPTzE4sVHpQBj5B1R9OhBbLTehtKu9S4PEwYP0qMMBNC_WZ4aX2Wb1WCV2wHjvW5StSROykuY3heu7ZLHn9CWwwqtuqHidCr0v4g"/>
+<div>
+<h4 class="font-bold text-slate-300 leading-tight">Sana Khan</h4>
+<p class="text-xs text-slate-500">Ward B • Room 408</p>
+</div>
+</div>
+<span class="px-2 py-1 bg-slate-800 text-slate-400 text-[10px] font-bold rounded">
+                            Stable
+                        </span>
+</div>
+<div class="space-y-4 opacity-70">
+<div class="flex items-end justify-between">
+<div>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mb-1">Resp Rate</p>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-mono text-white">18</span>
+<span class="text-xs text-slate-500">RR</span>
+</div>
+</div>
+</div>
+<div class="h-1 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[50%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stable Patient 4 -->
+<div class="glass-dark rounded-2xl overflow-hidden border border-slate-800/50 transition-all hover:border-slate-700">
+<div class="p-6">
+<div class="flex justify-between items-start mb-6">
+<div class="flex gap-3">
+<img class="w-12 h-12 rounded-xl object-cover opacity-80" data-alt="older man portrait with wise expression and high contrast lighting in clinic room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKZPzRgwGJDmx1GmeMDl0hEOn90r2PnDZfaPex3Ntodg-jYLXDveNkD5TcXb8q6ckUGtuEFdrcji4QAGtSEX-FFBQWUOPUwzyMsr0SGBeEA2VKqDHNtJ5L-9N15Vr3nLSV8JSKWYjmhRpp0HeZObeaHKBlGYQcX_z_tKbQTivfXwTQN6i8IoWm0jkuPQLTlr_j08v5B1ENaSXwOFk9qfN83PZUbO7tk8WQMrGyGFuMHwAbApUfdRB6Ksf0vtfB4boSDJ9nP4ODgw"/>
+<div>
+<h4 class="font-bold text-slate-300 leading-tight">Arthur Morgan</h4>
+<p class="text-xs text-slate-500">Ward A • Room 102</p>
+</div>
+</div>
+<span class="px-2 py-1 bg-slate-800 text-slate-400 text-[10px] font-bold rounded">
+                            Stable
+                        </span>
+</div>
+<div class="space-y-4 opacity-70">
+<div class="flex items-end justify-between">
+<div>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold mb-1">Oxygen</p>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-mono text-white">96</span>
+<span class="text-xs text-slate-500">%</span>
+</div>
+</div>
+</div>
+<div class="h-1 bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 w-[96%]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Activity Feed Side Panel (Conceptual for Asymmetry) -->
+<section class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 glass-dark rounded-2xl p-6 border border-slate-800/50">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-bold text-white">Trend Analysis</h3>
+<div class="flex gap-4">
+<div class="flex items-center gap-1.5 text-[10px] text-slate-400">
+<span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span> Admissions
+                        </div>
+<div class="flex items-center gap-1.5 text-[10px] text-slate-400">
+<span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> Escalations
+                        </div>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between px-2 pt-4 border-l border-b border-slate-800">
+<!-- Simplified Visual Graph Bars -->
+<div class="w-8 bg-slate-800/30 rounded-t h-2/3 relative group">
+<div class="absolute bottom-0 w-full bg-sky-500/50 h-1/2 rounded-t transition-all group-hover:h-3/4"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[8px] text-slate-600">MON</span>
+</div>
+<div class="w-8 bg-slate-800/30 rounded-t h-3/4 relative group">
+<div class="absolute bottom-0 w-full bg-sky-500/50 h-2/3 rounded-t transition-all group-hover:h-4/5"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[8px] text-slate-600">TUE</span>
+</div>
+<div class="w-8 bg-slate-800/30 rounded-t h-1/2 relative group">
+<div class="absolute bottom-0 w-full bg-red-500/50 h-1/3 rounded-t transition-all group-hover:h-1/2"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[8px] text-slate-600">WED</span>
+</div>
+<div class="w-8 bg-slate-800/30 rounded-t h-4/5 relative group">
+<div class="absolute bottom-0 w-full bg-sky-500/50 h-3/5 rounded-t transition-all group-hover:h-2/3"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[8px] text-slate-600">THU</span>
+</div>
+<div class="w-8 bg-slate-800/30 rounded-t h-2/3 relative group">
+<div class="absolute bottom-0 w-full bg-sky-500/50 h-1/2 rounded-t transition-all group-hover:h-3/4"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[8px] text-slate-600">FRI</span>
+</div>
+<div class="w-8 bg-slate-800/30 rounded-t h-1/3 relative group">
+<div class="absolute bottom-0 w-full bg-sky-500/50 h-1/4 rounded-t transition-all group-hover:h-1/3"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[8px] text-slate-600">SAT</span>
+</div>
+<div class="w-8 bg-slate-800/30 rounded-t h-1/4 relative group">
+<div class="absolute bottom-0 w-full bg-sky-500/50 h-1/5 rounded-t transition-all group-hover:h-1/4"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[8px] text-slate-600">SUN</span>
+</div>
+</div>
+</div>
+<div class="glass-dark rounded-2xl p-6 border border-slate-800/50">
+<h3 class="font-bold text-white mb-6">Live Feed</h3>
+<div class="space-y-6">
+<div class="flex gap-3">
+<div class="mt-1 w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.5)]"></div>
+<div>
+<p class="text-xs text-slate-200">New medication alert for Room 402</p>
+<p class="text-[10px] text-slate-500 mt-1">2 mins ago • Dr. Miller</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="mt-1 w-2 h-2 rounded-full bg-sky-400"></div>
+<div>
+<p class="text-xs text-slate-200">Patient Maria Santos vitals synced</p>
+<p class="text-[10px] text-slate-500 mt-1">Just now • Auto-Sync</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="mt-1 w-2 h-2 rounded-full bg-emerald-400"></div>
+<div>
+<p class="text-xs text-slate-200">David Chen cleared for discharge</p>
+<p class="text-[10px] text-slate-500 mt-1">15 mins ago • Nurse Jenkins</p>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="mt-1 w-2 h-2 rounded-full bg-slate-600"></div>
+<div>
+<p class="text-xs text-slate-200">System maintenance complete</p>
+<p class="text-[10px] text-slate-500 mt-1">1 hour ago • IT Support</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

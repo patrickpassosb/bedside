@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .ambient-shadow {
+            box-shadow: 0 32px 64px -12px rgba(25, 28, 31, 0.06);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e6e8ea",
+                        "on-tertiary-fixed-variant": "#693c00",
+                        "on-error": "#ffffff",
+                        "tertiary": "#8a5100",
+                        "inverse-surface": "#2d3133",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-tertiary-fixed": "#2c1600",
+                        "primary-fixed": "#c9e6ff",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffb86e",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#3e4850",
+                        "surface-bright": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "secondary-container": "#d0e1fb",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#89ceff",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "inverse-primary": "#89ceff",
+                        "outline-variant": "#bec8d2",
+                        "primary-container": "#0ea5e9",
+                        "error": "#ba1a1a",
+                        "surface-container": "#eceef0",
+                        "on-secondary-fixed": "#0b1c30",
+                        "tertiary-fixed": "#ffdcbd",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-tint": "#006591",
+                        "on-primary-container": "#003751",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#54647a",
+                        "primary": "#006591",
+                        "on-tertiary-container": "#4d2b00",
+                        "secondary": "#505f76",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-primary-fixed-variant": "#004c6e",
+                        "inverse-on-surface": "#eff1f3",
+                        "background": "#f7f9fb",
+                        "tertiary-container": "#de8712",
+                        "outline": "#6e7881",
+                        "surface": "#f7f9fb",
+                        "surface-dim": "#d8dadc",
+                        "on-primary-fixed": "#001e2f",
+                        "on-primary": "#ffffff",
+                        "on-background": "#191c1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- SideNavBar Anchor -->
+<aside class="w-[240px] h-screen fixed left-0 top-0 border-r-0 bg-slate-50 dark:bg-slate-900/50 backdrop-blur-md flex flex-col h-full p-6 z-50">
+<div class="mb-10 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm" data-icon="clinical_notes">clinical_notes</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white leading-none">Bedside</h1>
+<p class="text-[10px] uppercase tracking-widest text-primary font-semibold mt-1">Active Pulse</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-inter body-md leading-relaxed tracking-tight">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="rss_feed">rss_feed</span>
+<span class="font-inter body-md leading-relaxed tracking-tight">Activity Feed</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-sky-700 dark:text-sky-400 font-semibold bg-sky-50 dark:bg-sky-900/20 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="priority_high">priority_high</span>
+<span class="font-inter body-md leading-relaxed tracking-tight">Escalations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-200/50 dark:hover:bg-slate-800 transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-inter body-md leading-relaxed tracking-tight">Admin</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-200/50">
+<div class="flex items-center gap-3 px-4 py-3 text-slate-500">
+<span class="material-symbols-outlined" data-icon="hospital">local_hospital</span>
+<span class="text-xs font-medium">Hospital Isaac Newton</span>
+</div>
+</div>
+</aside>
+<!-- TopNavBar Anchor -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] z-40 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl border-b border-slate-200/15 dark:border-slate-800/15 shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center h-16 px-8 max-w-[1400px] mx-auto">
+<h2 class="font-inter font-bold text-2xl tracking-tight text-on-surface">Escalations</h2>
+<div class="flex items-center gap-6">
+<div class="text-slate-900 dark:text-white font-mono text-sm">14:32:07</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined text-amber-500" data-icon="light_mode" style="font-variation-settings: 'FILL' 1;">light_mode</span>
+</button>
+<button class="flex items-center gap-2 p-1 pr-3 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all duration-300">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-slate-200">
+<img alt="Doctor Profile" data-alt="professional portrait of a male doctor in a white coat with a friendly expression in a clinical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL5W30IAQAhiFbg9dEBJ7FTAI34c-ybSy_srGn4h4S97a-b-KTOFjP_0j9KjHd4McE20uZ5ckFhgfMnvIpATFvMNRuUNbGkf2RE0RdHWljV6sIFZe2bWnhWWQ0hSbOaW4_V_ZbG2wrBG1aPNrhKZTmWi12fvfLPLIFoL3xgFZHHZEoOKIJlAiHWxg21Yx-gvrf2xCrINgJpvoW5hsQ34YeHlPHPYR6FUcu7VT1HFVp0ZmyIYsEpT6h4GZbZHAdL-IbijD2-vqZTw"/>
+</div>
+<span class="material-symbols-outlined text-slate-400" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] pt-24 p-8 min-h-screen">
+<div class="max-w-[1200px] mx-auto">
+<!-- Tabs Section -->
+<div class="flex items-center gap-8 mb-10 border-b border-outline-variant/20">
+<button class="pb-4 text-sm font-bold tracking-wide text-primary border-b-2 border-primary relative">
+                    Pending (2)
+                    <span class="absolute -top-1 -right-4 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="pb-4 text-sm font-medium tracking-wide text-outline hover:text-on-surface transition-colors">
+                    Resolved
+                </button>
+</div>
+<!-- Pending Section (Bento Inspired Grid) -->
+<section class="mb-16">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Escalation Card 1 -->
+<div class="bg-white rounded-xl overflow-hidden border-l-4 border-error ambient-shadow flex flex-col relative">
+<div class="absolute inset-0 bg-error/5 pointer-events-none"></div>
+<div class="p-6 relative z-10 flex flex-col h-full">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-lg font-bold text-on-surface">Roberto Alves</h3>
+<p class="text-sm text-outline flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-xs" data-icon="meeting_room">meeting_room</span>
+                                        Post-Op ICU • Bed 03A
+                                    </p>
+</div>
+<span class="text-[11px] font-bold text-error uppercase tracking-widest flex items-center gap-1 bg-error/10 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+                                    8 minutes ago
+                                </span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg mb-6 flex-grow">
+<p class="text-on-surface leading-relaxed text-sm italic">
+                                    "I'm feeling intense chest pain and having difficulty breathing"
+                                </p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex -space-x-2">
+<img alt="Nurse" class="w-8 h-8 rounded-full border-2 border-white" data-alt="close up headshot of a female nurse in blue scrubs with a professional look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeAcGdo3WKtTULHagRdwqhUPp-Bjl9B7Ud0Ait7-uk_gPlIBqfb5curAqQRF9QZHx9Sc3z67MYBpghXVue-zI6qQRjrjEpYoxFMLSms6LmzzGK_zQdbXsPcQmp96nR4ahcbQWB_9sttxhCsI-MHREBoMqS0MreEYrTcnp18UwJ02_WvbKB3ceWVqCYOJ3ZP_CA9-sZeJ8vKPllB8xP7y0HtOEOy6bWlmpTyEfVR0x4k7eM_Bdsro6MbV7PZ02YD67utl7I6lfJNw"/>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[10px] font-bold text-slate-400">+1</div>
+</div>
+<button class="px-5 py-2.5 bg-error text-white text-sm font-bold rounded-lg hover:bg-error/90 transition-all scale-100 active:scale-95 flex items-center gap-2">
+                                    Resolve Escalation
+                                </button>
+</div>
+</div>
+</div>
+<!-- Escalation Card 2 -->
+<div class="bg-white rounded-xl overflow-hidden border-l-4 border-primary ambient-shadow flex flex-col relative">
+<div class="p-6 relative z-10 flex flex-col h-full">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-lg font-bold text-on-surface">Fábio Lima</h3>
+<p class="text-sm text-outline flex items-center gap-1.5 mt-0.5">
+<span class="material-symbols-outlined text-xs" data-icon="meeting_room">meeting_room</span>
+                                        Medical Ward A • Bed 07C
+                                    </p>
+</div>
+<span class="text-[11px] font-bold text-outline uppercase tracking-widest flex items-center gap-1 bg-slate-100 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-xs" data-icon="schedule">schedule</span>
+                                    3 minutes ago
+                                </span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg mb-6 flex-grow">
+<p class="text-on-surface leading-relaxed text-sm italic">
+                                    "I need help, the oxygen feels insufficient"
+                                </p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex -space-x-2">
+<img alt="Doctor" class="w-8 h-8 rounded-full border-2 border-white" data-alt="portrait of a male healthcare professional with glasses and clinical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ2khGRQPspdLmyf4kOMKX3IeKuhCFxGrActw0wHtZdu9bxH2LITB4nv2KpVPWHbIsJsmoYZ5VSEfg5mQL09WS7WoNwGxIVLr-8seM9b6qFykP2NOndXabq19MypNpj2hYvZ47RbIp5njHkTZ2e-yzBkcO3rgP-eJqympJgVXDBZ2h3a5OJVLpuGJFdWnPU6udc6VdquiExyw4nNcYVpwPZh0Yqa97RcU4tPdz_K4tMkuJluRCoPAqtXDqn2y2nnGcaXqaM8PL0A"/>
+</div>
+<button class="px-5 py-2.5 bg-error text-white text-sm font-bold rounded-lg hover:bg-error/90 transition-all scale-100 active:scale-95 flex items-center gap-2">
+                                    Resolve Escalation
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Resolved Section (Muted/Editorial Layout) -->
+<section>
+<div class="flex items-center gap-4 mb-6">
+<h4 class="text-xs font-bold uppercase tracking-[0.2em] text-outline">Recently Resolved</h4>
+<div class="h-[1px] flex-grow bg-outline-variant/20"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Resolved Card 1 -->
+<div class="bg-surface-container-low/50 border border-outline-variant/10 rounded-xl p-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<h5 class="text-sm font-bold text-on-surface opacity-60">Ana Martins</h5>
+<p class="text-xs text-outline">Resolved by Nurse Silva at 13:45</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline/30" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Resolved Card 2 -->
+<div class="bg-surface-container-low/50 border border-outline-variant/10 rounded-xl p-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-500">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<h5 class="text-sm font-bold text-on-surface opacity-60">Carlos Gomez</h5>
+<p class="text-xs text-outline">Resolved by Nurse Silva at 13:45</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline/30" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Contextual Metadata Sidebar (Partial Asymmetry) -->
+<div class="fixed right-0 top-16 bottom-0 w-16 flex flex-col items-center py-8 gap-8 border-l border-outline-variant/10 bg-surface-container-lowest/30 backdrop-blur-sm pointer-events-none">
+<div class="flex flex-col items-center gap-2 opacity-20 rotate-90 origin-center whitespace-nowrap">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface">Precision Monitoring</span>
+</div>
+<div class="flex-grow"></div>
+<button class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-outline pointer-events-auto hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+</button>
+</div>
+</body></html>
