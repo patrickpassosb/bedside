@@ -5,6 +5,7 @@ import { buildMedicationListPayload } from "../whatsapp/messageBuilder.js";
 import { normalizePhone } from "../utils/phoneNormalizer.js";
 import { generateResponse } from "../ai/client.js";
 import { buildSystemPrompt } from "../ai/promptBuilder.js";
+import { truncateMessage } from "../utils/messageTruncator.js";
 
 export async function handleMedication(ctx: PatientWithHospital, language: string): Promise<string> {
   const phone = normalizePhone(ctx.patient.phone_number);
@@ -74,13 +75,14 @@ export async function handleMedicationItemTap(
         ? "Respond in Spanish."
         : "Respond in Portuguese.";
 
-  const response = await generateResponse([
+  const rawResponse = await generateResponse([
     { role: "system", content: systemPrompt },
     {
       role: "user",
       content: `${langInstruction} Explain my medication ${med.medication_name} ${med.dosage} in simple, warm language. Include what it is for (${med.reason}), how I take it (${med.route}, ${med.frequency}), and when the next dose is due.`,
     },
   ]);
+  const response = truncateMessage(rawResponse, language);
 
   await sendText(phone, response);
   return response;

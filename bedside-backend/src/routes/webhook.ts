@@ -160,6 +160,7 @@ async function processWebhook(body: unknown): Promise<void> {
 
   // Route intent
   const intent = detectIntent(messageText);
+  console.log(`Intent for ${phone}: ${intent}`);
 
   // Log inbound message
   await logConversation({

@@ -33,6 +33,9 @@ const INTENT_KEYWORDS: Array<{ intent: Intent; keywords: string[] }> = [
     keywords: [
       "medication", "medications", "meds", "medicine",
       "remedios", "remedio", "medicamentos", "medicamento", "medicacao",
+      "prescricao", "prescricoes", "receita", "receitas", "remedio de hoje",
+      "medicacao de hoje", "prescricao de hoje", "meus remedios", "minha medicacao",
+      "minha prescricao", "qual a minha prescricao", "quais sao meus remedios",
       "mis medicamentos", "pastillas",
     ],
   },

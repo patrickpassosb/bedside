@@ -5,6 +5,7 @@ import { buildSystemPrompt } from "../ai/promptBuilder.js";
 import { getSession, appendMessage } from "../session/sessionManager.js";
 import { sendText } from "../whatsapp/sender.js";
 import { normalizePhone } from "../utils/phoneNormalizer.js";
+import { truncateMessage } from "../utils/messageTruncator.js";
 
 export async function handleFreeText(
   ctx: PatientWithHospital,
@@ -39,7 +40,8 @@ export async function handleFreeText(
     { role: "user" as const, content: messageText },
   ];
 
-  const response = await generateResponse(messages);
+  const rawResponse = await generateResponse(messages);
+  const response = truncateMessage(rawResponse, language);
 
   // Update session memory
   appendMessage(phone, { role: "user", content: messageText });
