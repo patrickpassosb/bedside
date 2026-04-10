@@ -6,6 +6,7 @@
     "dev": "bun run --watch src/index.ts",
     "start": "bun run src/index.ts",
     "seed": "bun run seed/seed.ts",
+    "demo:whatsapp": "bun run scripts/evolution-demo.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
