@@ -61,7 +61,11 @@ async function processWebhook(body: unknown): Promise<void> {
   }
 
   const remoteJid = key.remoteJid as string | undefined;
-  if (!remoteJid || remoteJid.endsWith("@g.us")) return;
+  if (!remoteJid) return;
+  if (remoteJid.endsWith("@g.us")) {
+    console.log(`Ignoring group message from ${remoteJid}`);
+    return;
+  }
 
   const phone = normalizePhone(remoteJid);
 
