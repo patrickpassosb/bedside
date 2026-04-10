@@ -1,0 +1,59 @@
+services:
+  evolution-api:
+    image: evoapicloud/evolution-api:v2.3.7
+    container_name: evolution-api
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - AUTHENTICATION_API_KEY=${EVOLUTION_API_KEY}
+      - AUTHENTICATION_EXPOSE_IN_FETCH_INSTANCES=true
+      - SERVER_URL=http://localhost:8080
+      - DEL_INSTANCE=false
+      - DATABASE_PROVIDER=postgresql
+      - DATABASE_CONNECTION_URI=postgresql://evolution:evolution@localhost:5433/evolution
+      - DATABASE_CONNECTION_CLIENT_NAME=evolution
+      - CACHE_REDIS_ENABLED=true
+      - CACHE_REDIS_URI=redis://localhost:6380
+      - CACHE_LOCAL_ENABLED=false
+      - LOG_LEVEL=ERROR,WARN,DEBUG,INFO,LOG,VERBOSE,DARK,WEBHOOKS
+    volumes:
+      - evolution_data:/evolution/instances
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  redis:
+    image: redis:7-alpine
+    container_name: evolution-redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: evolution-postgres
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=evolution
+      - POSTGRES_PASSWORD=evolution
+      - POSTGRES_DB=evolution
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U evolution"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  evolution_data:
+  postgres_data:

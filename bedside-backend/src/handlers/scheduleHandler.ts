@@ -1,0 +1,69 @@
+import { supabase } from "../supabase.js";
+import type { PatientWithHospital } from "../utils/patientLookup.js";
+import { sendList, sendText } from "../whatsapp/sender.js";
+import { buildScheduleListPayload } from "../whatsapp/messageBuilder.js";
+import { normalizePhone } from "../utils/phoneNormalizer.js";
+
+export async function handleSchedule(ctx: PatientWithHospital, language: string): Promise<string> {
+  const today = new Date().toISOString().split("T")[0];
+  const phone = normalizePhone(ctx.patient.phone_number);
+
+  const { data: appointments, error } = await supabase
+    .from("appointments")
+    .select("*")
+    .eq("hospital_id", ctx.patient.hospital_id)
+    .eq("patient_id", ctx.patient.id)
+    .eq("appointment_date", today)
+    .eq("completed", false)
+    .order("scheduled_time", { ascending: true });
+
+  if (error || !appointments || appointments.length === 0) {
+    const msg =
+      language === "es"
+        ? `Hola ${ctx.patient.name}, no tienes citas programadas para hoy. Si tienes alguna pregunta, estoy aqui para ayudarte.`
+        : language === "en"
+          ? `Hello ${ctx.patient.name}, you have no appointments scheduled for today. If you have any questions, I'm here to help!`
+          : `Ola ${ctx.patient.name}, voce nao tem compromissos agendados para hoje. Se tiver alguma duvida, estou aqui para ajudar!`;
+    await sendText(phone, msg);
+    return msg;
+  }
+
+  const payload = buildScheduleListPayload(appointments);
+  await sendList(phone, payload.title, payload.description, payload.buttonText, payload.sections);
+
+  return `Sent schedule with ${appointments.length} appointments`;
+}
+
+export async function handleScheduleItemTap(
+  ctx: PatientWithHospital,
+  appointmentId: string,
+  language: string
+): Promise<string> {
+  const { data: apt } = await supabase
+    .from("appointments")
+    .select("*")
+    .eq("id", appointmentId)
+    .eq("hospital_id", ctx.patient.hospital_id)
+    .single();
+
+  if (!apt) return "";
+
+  const phone = normalizePhone(ctx.patient.phone_number);
+  const prep = apt.preparation_notes
+    ? language === "en"
+      ? `\n\nPreparation: ${apt.preparation_notes}`
+      : language === "es"
+        ? `\n\nPreparacion: ${apt.preparation_notes}`
+        : `\n\nPreparacao: ${apt.preparation_notes}`
+    : "";
+
+  const msg =
+    language === "en"
+      ? `*${apt.title}*\nTime: ${apt.scheduled_time}\nLocation: ${apt.location ?? "To be confirmed"}${prep}`
+      : language === "es"
+        ? `*${apt.title}*\nHora: ${apt.scheduled_time}\nLugar: ${apt.location ?? "Por confirmar"}${prep}`
+        : `*${apt.title}*\nHorario: ${apt.scheduled_time}\nLocal: ${apt.location ?? "A confirmar"}${prep}`;
+
+  await sendText(phone, msg);
+  return msg;
+}
