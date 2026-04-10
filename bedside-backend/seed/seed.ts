@@ -14,38 +14,42 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 async function seed() {
   console.log("Seeding Bedside database...\n");
 
-  // 1. Insert hospital
-  const { data: hospital, error: hospitalError } = await supabase
+  // 1. Find or insert hospital.
+  // hospitals.name has no UNIQUE constraint in schema.sql, so upsert with
+  // onConflict:"name" fails. We do a check-then-insert instead, which is
+  // idempotent on re-runs.
+  const { data: existing, error: lookupError } = await supabase
     .from("hospitals")
-    .upsert(
-      {
+    .select("*")
+    .eq("name", "Hospital Isaac Newton")
+    .maybeSingle();
+
+  if (lookupError) {
+    console.error("Failed to query hospitals:", lookupError.message);
+    process.exit(1);
+  }
+
+  let hospital = existing;
+  if (!hospital) {
+    const { data: inserted, error: insertError } = await supabase
+      .from("hospitals")
+      .insert({
         name: "Hospital Isaac Newton",
         country: "Brazil",
         language: "pt-BR",
         timezone: "America/Sao_Paulo",
         active: true,
-      },
-      { onConflict: "name" }
-    )
-    .select()
-    .single();
+      })
+      .select()
+      .single();
 
-  if (hospitalError) {
-    // Upsert on name may fail if there is no unique constraint — fall back to lookup
-    const { data: existing } = await supabase
-      .from("hospitals")
-      .select("*")
-      .eq("name", "Hospital Isaac Newton")
-      .maybeSingle();
-
-    if (!existing) {
-      console.error("Failed to create hospital:", hospitalError.message);
+    if (insertError) {
+      console.error("Failed to create hospital:", insertError.message);
       process.exit(1);
     }
-
+    hospital = inserted;
+  } else {
     console.log("Hospital Isaac Newton already exists, using existing record.");
-    await seedPatients(existing);
-    return;
   }
 
   await seedPatients(hospital!);
