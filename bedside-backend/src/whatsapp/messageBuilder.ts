@@ -19,6 +19,7 @@ export function buildScheduleListPayload(appointments: Appointment[]) {
   return {
     title: "Sua agenda de hoje",
     description: "Veja seus compromissos agendados para hoje. Toque em um item para mais detalhes.",
+    footerText: "Bedside - Assistente do Paciente",
     buttonText: "Ver agenda",
     sections: [
       {
@@ -37,6 +38,7 @@ export function buildMedicationListPayload(medications: Medication[]) {
   return {
     title: "Seus medicamentos",
     description: "Veja seus medicamentos atuais. Toque em um item para mais detalhes.",
+    footerText: "Bedside - Assistente do Paciente",
     buttonText: "Ver medicamentos",
     sections: [
       {

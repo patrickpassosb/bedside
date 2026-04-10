@@ -99,12 +99,13 @@ export async function sendList(
   phone: string,
   title: string,
   description: string,
+  footerText: string,
   buttonText: string,
   sections: ListSection[]
 ): Promise<void> {
   await sendEvolutionRequest(
     `/sendList/${instance()}`,
-    { number: phone, title, description, buttonText, sections },
+    { number: phone, title, description, footerText, buttonText, sections },
     "Evolution API sendList"
   );
 }

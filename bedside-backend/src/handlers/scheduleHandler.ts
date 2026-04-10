@@ -4,6 +4,44 @@ import { sendList, sendText } from "../whatsapp/sender.js";
 import { buildScheduleListPayload } from "../whatsapp/messageBuilder.js";
 import { normalizePhone } from "../utils/phoneNormalizer.js";
 
+interface AppointmentSummary {
+  title: string;
+  scheduled_time: string;
+  location: string | null;
+}
+
+function buildScheduleFallbackMessage(
+  patientName: string,
+  appointments: AppointmentSummary[],
+  language: string
+): string {
+  const intro =
+    language === "es"
+      ? `*Agenda de hoy para ${patientName}*`
+      : language === "en"
+        ? `*Today's schedule for ${patientName}*`
+        : `*Agenda de hoje para ${patientName}*`;
+
+  const lines = appointments.map((apt) => {
+    if (language === "es") {
+      return `- *${apt.scheduled_time}* ${apt.title}${apt.location ? ` (${apt.location})` : ""}`;
+    }
+    if (language === "en") {
+      return `- *${apt.scheduled_time}* ${apt.title}${apt.location ? ` (${apt.location})` : ""}`;
+    }
+    return `- *${apt.scheduled_time}* ${apt.title}${apt.location ? ` (${apt.location})` : ""}`;
+  });
+
+  const footer =
+    language === "es"
+      ? "\n\nSi desea, puedo explicarle cualquiera de estos compromisos."
+      : language === "en"
+        ? "\n\nIf you'd like, I can explain any of these appointments."
+        : "\n\nSe quiser, posso explicar qualquer um desses compromissos.";
+
+  return `${intro}\n\n${lines.join("\n")}${footer}`;
+}
+
 export async function handleSchedule(ctx: PatientWithHospital, language: string): Promise<string> {
   const today = new Date().toISOString().split("T")[0];
   const phone = normalizePhone(ctx.patient.phone_number);
@@ -29,9 +67,23 @@ export async function handleSchedule(ctx: PatientWithHospital, language: string)
   }
 
   const payload = buildScheduleListPayload(appointments);
-  await sendList(phone, payload.title, payload.description, payload.buttonText, payload.sections);
+  try {
+    await sendList(
+      phone,
+      payload.title,
+      payload.description,
+      payload.footerText,
+      payload.buttonText,
+      payload.sections
+    );
 
-  return `Sent schedule with ${appointments.length} appointments`;
+    return `Sent schedule with ${appointments.length} appointments`;
+  } catch (err) {
+    console.warn("Schedule list send failed, falling back to text.", err);
+    const fallback = buildScheduleFallbackMessage(ctx.patient.name, appointments, language);
+    await sendText(phone, fallback);
+    return fallback;
+  }
 }
 
 export async function handleScheduleItemTap(

@@ -8,6 +8,45 @@ import { buildSystemPrompt } from "../ai/promptBuilder.js";
 import { truncateMessage } from "../utils/messageTruncator.js";
 import { normalizeWhatsAppFormatting } from "../utils/whatsappFormatter.js";
 
+interface MedicationSummary {
+  medication_name: string;
+  dosage: string;
+  route: string;
+  frequency: string;
+}
+
+function buildMedicationFallbackMessage(
+  patientName: string,
+  medications: MedicationSummary[],
+  language: string
+): string {
+  const intro =
+    language === "es"
+      ? `*Medicamentos de ${patientName}*`
+      : language === "en"
+        ? `*Medications for ${patientName}*`
+        : `*Medicamentos de ${patientName}*`;
+
+  const lines = medications.map((med) => {
+    if (language === "es") {
+      return `- *${med.medication_name} ${med.dosage}* (${med.route}, ${med.frequency})`;
+    }
+    if (language === "en") {
+      return `- *${med.medication_name} ${med.dosage}* (${med.route}, ${med.frequency})`;
+    }
+    return `- *${med.medication_name} ${med.dosage}* (${med.route}, ${med.frequency})`;
+  });
+
+  const footer =
+    language === "es"
+      ? "\n\nSi desea, puedo explicarle cualquiera de estos medicamentos."
+      : language === "en"
+        ? "\n\nIf you'd like, I can explain any of these medications."
+        : "\n\nSe quiser, posso explicar qualquer um desses medicamentos.";
+
+  return `${intro}\n\n${lines.join("\n")}${footer}`;
+}
+
 export async function handleMedication(ctx: PatientWithHospital, language: string): Promise<string> {
   const phone = normalizePhone(ctx.patient.phone_number);
 
@@ -30,9 +69,23 @@ export async function handleMedication(ctx: PatientWithHospital, language: strin
   }
 
   const payload = buildMedicationListPayload(medications);
-  await sendList(phone, payload.title, payload.description, payload.buttonText, payload.sections);
+  try {
+    await sendList(
+      phone,
+      payload.title,
+      payload.description,
+      payload.footerText,
+      payload.buttonText,
+      payload.sections
+    );
 
-  return `Sent medication list with ${medications.length} medications`;
+    return `Sent medication list with ${medications.length} medications`;
+  } catch (err) {
+    console.warn("Medication list send failed, falling back to text.", err);
+    const fallback = buildMedicationFallbackMessage(ctx.patient.name, medications, language);
+    await sendText(phone, fallback);
+    return fallback;
+  }
 }
 
 export async function handleMedicationItemTap(
