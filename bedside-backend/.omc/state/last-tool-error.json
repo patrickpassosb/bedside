@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"bun run seed 2>&1\",\"description\":\"Seed Supabase with demo hospital and patients\"}",
+  "error": "Exit code 1\n$ bun run seed/seed.ts\nSeeding Bedside database...\n\nFailed to create hospital: there is no unique or exclusion constraint matching the ON CONFLICT specification\nerror: script \"seed\" exited with code 1",
+  "timestamp": "2026-04-10T13:52:10.344Z",
+  "retry_count": 1
+}

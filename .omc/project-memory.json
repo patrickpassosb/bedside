@@ -1,0 +1,179 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1775826949731,
+  "projectRoot": "/home/patrickpassos/GitHub/work/bedside",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs"
+    ],
+    "gitBranches": {
+      "defaultBranch": "master",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "bedside-backend": {
+      "path": "bedside-backend",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1775826949700,
+      "keyFiles": [
+        "bun.lock",
+        "docker-compose.yml",
+        "package.json",
+        "tsconfig.json",
+        "vercel.json"
+      ]
+    },
+    "bedside-frontend": {
+      "path": "bedside-frontend",
+      "purpose": null,
+      "fileCount": 10,
+      "lastAccessed": 1775826949701,
+      "keyFiles": [
+        "bun.lock",
+        "index.html",
+        "package.json",
+        "postcss.config.js",
+        "tailwind.config.ts"
+      ]
+    },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 6,
+      "lastAccessed": 1775826949709,
+      "keyFiles": [
+        "AGENT_1_BACKEND_v2.md",
+        "AGENT_2_FRONTEND_v2.md",
+        "DEPLOY_VERCEL.md",
+        "GOOGLE_STITCH_PROMPT_v2.md",
+        "SCHEMA_v2.md"
+      ]
+    },
+    "bedside-backend/src": {
+      "path": "bedside-backend/src",
+      "purpose": "Source code",
+      "fileCount": 3,
+      "lastAccessed": 1775826949725,
+      "keyFiles": [
+        "config.ts",
+        "index.ts",
+        "supabase.ts"
+      ]
+    },
+    "bedside-frontend/src": {
+      "path": "bedside-frontend/src",
+      "purpose": "Source code",
+      "fileCount": 4,
+      "lastAccessed": 1775826949727,
+      "keyFiles": [
+        "App.tsx",
+        "index.css",
+        "main.tsx"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "README.md",
+      "accessCount": 1,
+      "lastAccessed": 1775827315659,
+      "type": "file"
+    },
+    {
+      "path": "AGENTS.md",
+      "accessCount": 1,
+      "lastAccessed": 1775827316139,
+      "type": "file"
+    },
+    {
+      "path": "package.json",
+      "accessCount": 1,
+      "lastAccessed": 1775827316879,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/package.json",
+      "accessCount": 1,
+      "lastAccessed": 1775827321910,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/docker-compose.yml",
+      "accessCount": 1,
+      "lastAccessed": 1775827322115,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/.env.example",
+      "accessCount": 1,
+      "lastAccessed": 1775827334972,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/src/index.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775827335886,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/src/config.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775827336077,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/src/supabase.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775828075562,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/seed/schema.sql",
+      "accessCount": 1,
+      "lastAccessed": 1775828287800,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
