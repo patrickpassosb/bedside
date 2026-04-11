@@ -12,6 +12,11 @@ export const config = {
   mistralModel: process.env.MISTRAL_MODEL ?? "mistral-large-latest",
   mistralBaseUrl: process.env.MISTRAL_BASE_URL ?? "https://api.mistral.ai/v1",
 
+  // Third AI provider - OpenAI
+  openaiApiKey: process.env.OPENAI_API_KEY ?? "",
+  openaiModel: process.env.OPENAI_MODEL ?? "gpt-5-nano",
+  openaiBaseUrl: process.env.OPENAI_BASE_URL ?? "https://api.openai.com/v1",
+
   evolutionApiUrl: process.env.EVOLUTION_API_URL ?? "http://localhost:8080",
   evolutionApiKey: process.env.EVOLUTION_API_KEY ?? "",
   evolutionInstanceName: process.env.EVOLUTION_INSTANCE_NAME ?? "bedside-whatsapp",

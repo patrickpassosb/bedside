@@ -6,6 +6,7 @@ const REQUEST_TIMEOUT_MS = 8_000;
 
 let primaryClient: OpenAI | null = null;
 let fallbackClient: OpenAI | null = null;
+let thirdClient: OpenAI | null = null;
 
 function cannedResponse(language: string): string {
   if (language === "es") {
@@ -37,6 +38,17 @@ function getFallbackClient(): OpenAI | null {
     });
   }
   return fallbackClient;
+}
+
+function getThirdClient(): OpenAI | null {
+  if (!config.openaiApiKey) return null;
+  if (!thirdClient) {
+    thirdClient = new OpenAI({
+      apiKey: config.openaiApiKey,
+      baseURL: config.openaiBaseUrl,
+    });
+  }
+  return thirdClient;
 }
 
 async function callProvider(
@@ -91,13 +103,28 @@ export async function generateResponse(
       console.warn("[AI] FALLBACK ENGAGED -> Mistral");
       const content = await callProvider(fallback, config.mistralModel, messages);
       if (content) return content;
-      console.error("[AI] Fallback (Mistral) returned empty content - canned response");
+      console.error("[AI] Fallback (Mistral) returned empty content - trying OpenAI");
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      console.error(`[AI] Fallback (Mistral) failed - canned response: ${message}`);
+      console.error(`[AI] Fallback (Mistral) failed - trying OpenAI: ${message}`);
     }
   } else {
-    console.error("[AI] Fallback (Mistral) not configured - canned response");
+    console.error("[AI] Fallback (Mistral) not configured - trying OpenAI");
+  }
+
+  const third = getThirdClient();
+  if (third) {
+    try {
+      console.warn("[AI] THIRD FALLBACK ENGAGED -> OpenAI");
+      const content = await callProvider(third, config.openaiModel, messages);
+      if (content) return content;
+      console.error("[AI] Third fallback (OpenAI) returned empty content - canned response");
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`[AI] Third fallback (OpenAI) failed - canned response: ${message}`);
+    }
+  } else {
+    console.error("[AI] Third fallback (OpenAI) not configured - canned response");
   }
 
   return cannedResponse(language);
