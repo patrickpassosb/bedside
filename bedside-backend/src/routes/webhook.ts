@@ -14,15 +14,25 @@ import { sendText } from "../whatsapp/sender.js";
 import { supabase } from "../supabase.js";
 import { checkInjection } from "../utils/injectionDetector.js";
 import { truncateMessage } from "../utils/messageTruncator.js";
+import { config } from "../config.js";
 
 // Deduplication map: messageId -> timestamp
 const processedMessages = new Map<string, number>();
+
+// Per-phone debounce: drop any message arriving within 2s of the previous
+// message from the same phone. Prevents one demo attendee from burning the
+// AI quota with rapid taps.
+const THROTTLE_MS = 2_000;
+const lastMessageAt = new Map<string, number>();
 
 // Cleanup old entries every 60 seconds
 setInterval(() => {
   const cutoff = Date.now() - 60_000;
   for (const [id, ts] of processedMessages) {
     if (ts < cutoff) processedMessages.delete(id);
+  }
+  for (const [phone, ts] of lastMessageAt) {
+    if (ts < cutoff) lastMessageAt.delete(phone);
   }
 }, 60_000);
 
@@ -68,6 +78,13 @@ async function processWebhook(body: unknown): Promise<void> {
   }
 
   const phone = normalizePhone(remoteJid);
+  const throttleNow = Date.now();
+  const throttleLast = lastMessageAt.get(phone) ?? 0;
+  if (throttleNow - throttleLast < THROTTLE_MS) {
+    console.log(`[throttle] dropped message from ${phone} (within ${THROTTLE_MS}ms)`);
+    return;
+  }
+  lastMessageAt.set(phone, throttleNow);
 
   const message = data.message as Record<string, unknown> | undefined;
   if (!message) return;
@@ -104,8 +121,22 @@ async function processWebhook(body: unknown): Promise<void> {
 
   console.log(`Message from ${phone}: ${messageText}`);
 
-  // Look up patient
-  const ctx = await lookupPatient(remoteJid);
+  // Look up patient, with demo-mode fallback for the live hackathon demo
+  let ctx = await lookupPatient(remoteJid);
+  if (!ctx && config.demoMode && config.demoPatientPhone) {
+    const demoCtx = await lookupPatient(config.demoPatientPhone);
+    if (demoCtx) {
+      // Handlers route replies by ctx.patient.phone_number, so substitute the
+      // real sender's phone while preserving the demo patient's clinical data.
+      ctx = {
+        patient: { ...demoCtx.patient, phone_number: phone },
+        hospital: demoCtx.hospital,
+        isDemo: true,
+      };
+      console.log(`[demo-mode] serving ${phone} as demo patient ${demoCtx.patient.name}`);
+    }
+  }
+
   if (!ctx) {
     const lang = detectLanguage(messageText);
     const msg =
@@ -120,11 +151,13 @@ async function processWebhook(body: unknown): Promise<void> {
 
   // Detect language and update patient preference
   const language = detectLanguage(messageText, ctx.hospital.language);
-  await supabase
-    .from("patients")
-    .update({ preferred_language: language })
-    .eq("id", ctx.patient.id)
-    .eq("hospital_id", ctx.patient.hospital_id);
+  if (!ctx.isDemo) {
+    await supabase
+      .from("patients")
+      .update({ preferred_language: language })
+      .eq("id", ctx.patient.id)
+      .eq("hospital_id", ctx.patient.hospital_id);
+  }
 
   // Check for prompt injection
   if (checkInjection(messageText)) {

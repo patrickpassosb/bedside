@@ -27,6 +27,7 @@ interface HospitalRecord {
 export interface PatientWithHospital {
   patient: PatientRecord;
   hospital: HospitalRecord;
+  isDemo?: boolean;
 }
 
 export async function lookupPatient(rawPhone: string): Promise<PatientWithHospital | null> {

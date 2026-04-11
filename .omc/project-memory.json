@@ -115,27 +115,39 @@
   },
   "hotPaths": [
     {
-      "path": "README.md",
-      "accessCount": 1,
-      "lastAccessed": 1775827315659,
+      "path": "AGENTS.md",
+      "accessCount": 2,
+      "lastAccessed": 1775908807795,
       "type": "file"
     },
     {
-      "path": "AGENTS.md",
-      "accessCount": 1,
-      "lastAccessed": 1775827316139,
+      "path": "README.md",
+      "accessCount": 2,
+      "lastAccessed": 1775908808622,
       "type": "file"
     },
     {
       "path": "package.json",
-      "accessCount": 1,
-      "lastAccessed": 1775827316879,
+      "accessCount": 2,
+      "lastAccessed": 1775908808673,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/src/config.ts",
+      "accessCount": 2,
+      "lastAccessed": 1775908853517,
       "type": "file"
     },
     {
       "path": "bedside-backend/package.json",
-      "accessCount": 1,
-      "lastAccessed": 1775827321910,
+      "accessCount": 2,
+      "lastAccessed": 1775912803706,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/.env.example",
+      "accessCount": 2,
+      "lastAccessed": 1775912812973,
       "type": "file"
     },
     {
@@ -145,21 +157,9 @@
       "type": "file"
     },
     {
-      "path": "bedside-backend/.env.example",
-      "accessCount": 1,
-      "lastAccessed": 1775827334972,
-      "type": "file"
-    },
-    {
       "path": "bedside-backend/src/index.ts",
       "accessCount": 1,
       "lastAccessed": 1775827335886,
-      "type": "file"
-    },
-    {
-      "path": "bedside-backend/src/config.ts",
-      "accessCount": 1,
-      "lastAccessed": 1775827336077,
       "type": "file"
     },
     {
@@ -172,6 +172,60 @@
       "path": "bedside-backend/seed/schema.sql",
       "accessCount": 1,
       "lastAccessed": 1775828287800,
+      "type": "file"
+    },
+    {
+      "path": "CLAUDE.md",
+      "accessCount": 1,
+      "lastAccessed": 1775908805058,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/src/routes/webhook.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775908814611,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/src/utils/patientLookup.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775908815050,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/src/handlers/intentRouter.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775908815967,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/src/handlers/freeTextHandler.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775908816174,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/src/session/sessionManager.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775908853308,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/src/handlers/scheduleHandler.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775908853995,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/src/handlers/medicationHandler.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775908854422,
+      "type": "file"
+    },
+    {
+      "path": "bedside-backend/src/ai/client.ts",
+      "accessCount": 1,
+      "lastAccessed": 1775911016096,
       "type": "file"
     }
   ],
